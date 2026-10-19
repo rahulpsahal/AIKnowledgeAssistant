@@ -3,10 +3,13 @@ using AIKnowledgeAssistant.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var ollamaBaseUrl = builder.Configuration["Ollama:BaseUrl"] ?? "http://localhost:11434";
+var ollamaTimeoutSeconds = builder.Configuration.GetValue<int>("Ollama:TimeoutSeconds", 120);
+
 builder.Services.AddHttpClient<IAIService, AIService>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:11434");
-    client.Timeout = TimeSpan.FromMinutes(3);
+    client.BaseAddress = new Uri(ollamaBaseUrl);
+    client.Timeout = TimeSpan.FromSeconds(ollamaTimeoutSeconds);
 });
 
 builder.Services.AddControllers();

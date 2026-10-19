@@ -1,6 +1,22 @@
 @AIKnowledgeAssistant_HostAddress = http://localhost:5089
 
-GET {{AIKnowledgeAssistant_HostAddress}}/weatherforecast/
-Accept: application/json
+### Ask a question
+POST {{AIKnowledgeAssistant_HostAddress}}/api/ai/ask
+Content-Type: application/json
+
+{
+  "question": "What is clean architecture in software development?"
+}
+
+###
+
+### Summarize text to a target word count
+POST {{AIKnowledgeAssistant_HostAddress}}/api/ai/summarize
+Content-Type: application/json
+
+{
+  "text": "Artificial intelligence is the intelligence of machines or software, as opposed to the intelligence of living beings, primarily of humans. It is a field of study in computer science that develops and studies intelligent machines. Such machines may be called AIs. AI technology is widely used throughout industry, government, and science. Some high-profile applications include advanced web search engines, recommendation systems, understanding human speech, self-driving cars, and generative or creative tools.",
+  "targetWordCount": 20
+}
 
 ###
